@@ -1,0 +1,47 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "HTTP": {
+                "inputs": {
+                    "authentication": {
+                        "audience": "https://management.azure.com",
+                        "clientId": "56ed6b5f-36f6-4f68-9a68-ee03d7fb1ebe",
+                        "secret": "ba645c01-fake-secret-bdcddcd-eeee",
+                        "tenant": "76bef56a-5b87-4437-b5ec-007103398962",
+                        "type": "ActiveDirectoryOAuth"
+                    },
+                    "method": "POST",
+                    "uri": "https://management.azure.com/subscriptions/b6a475f9-b22a-49c4-92f8-ac0e6e576db9/resources?api-version=2020-10-01"
+                },
+                "runAfter": {},
+                "type": "Http"
+            },
+            "Response": {
+                "inputs": {
+                    "statusCode": 200
+                },
+                "kind": "Http",
+                "runAfter": {
+                    "HTTP": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Response"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {},
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "schema": {}
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    },
+    "parameters": {}
+}
